@@ -1,0 +1,13 @@
+// models/About.js
+const aboutSchema = new mongoose.Schema({
+  heading: String,
+  description: String,
+  image: String,
+  socials: {
+    linkedin: String,
+    instagram: String,
+    facebook: String,
+  },
+});
+
+export default mongoose.model("About", aboutSchema);
