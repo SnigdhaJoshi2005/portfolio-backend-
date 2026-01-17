@@ -1,4 +1,5 @@
-// models/Practice.js
+import mongoose from "mongoose";
+
 const practiceSchema = new mongoose.Schema({
   title: String,
   description: String,

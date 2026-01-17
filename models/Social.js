@@ -1,4 +1,3 @@
-// models/Social.js
 import mongoose from "mongoose";
 
 const socialSchema = new mongoose.Schema({

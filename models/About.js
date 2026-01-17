@@ -1,4 +1,5 @@
-// models/About.js
+import mongoose from "mongoose";
+
 const aboutSchema = new mongoose.Schema({
   heading: String,
   description: String,

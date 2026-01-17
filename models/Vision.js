@@ -1,25 +1,35 @@
-// models/Vision.js
 import mongoose from "mongoose";
 
-const visionSchema = new mongoose.Schema({
-  heading: {
-    type: String,
-    required: true,
-  },
+const visionSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-  description: {
-    type: String,
-    required: true,
-  },
+    description: {
+      type: String,
+      required: true,
+    },
 
-  image: {
-    type: String, // optional
-  },
+    image: {
+      type: String, // image URL or path
+      required: true,
+    },
 
-  isActive: {
-    type: Boolean,
-    default: true,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
-});
+  {
+    timestamps: true,
+  }
+);
 
-export default mongoose.model("Vision", visionSchema);
+/**
+ * Prevent OverwriteModelError during dev (nodemon)
+ */
+export default mongoose.models.Vision ||
+  mongoose.model("Vision", visionSchema);
