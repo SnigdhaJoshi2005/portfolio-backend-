@@ -1,32 +1,19 @@
 import mongoose from "mongoose";
 
-const serveSchema = new mongoose.Schema({
-  heading: {
-    type: String,
-    required: true,
-  },
+const serveSchema = new mongoose.Schema(
+  {
+    title1: String,
+    list: [String],
+    description1: String,
+    image1: String,
 
-  audience: {
-    type: [String], // list items
-    required: true,
+    title2: String,
+    description2: String,
+    quote: String,
+    image2: String,
   },
+  { timestamps: true }
+);
 
-  note: {
-    type: String,
-  },
-
-  globalHeading: {
-    type: String,
-  },
-
-  globalDescription: {
-    type: String,
-  },
-
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-});
-
-export default mongoose.model("Serve", serveSchema);
+export default mongoose.models.Serve ||
+  mongoose.model("Serve", serveSchema);

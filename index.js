@@ -12,6 +12,10 @@ import socialRoutes from "./routes/SocialRoutes.js";
 import authRoutes from "./routes/AuthRoutes.js";
 import userRoutes from "./routes/UserRoutes.js";
 import cookieParser from "cookie-parser";
+import processRoutes from "./routes/ProcessRoutes.js";
+
+app.use("/api/process", processRoutes);
+
 
 dotenv.config();
 
@@ -32,6 +36,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -43,6 +48,7 @@ app.use("/api/certificates", certificateRoutes);
 app.use("/api/serve", serveRoutes);
 app.use("/api/vision", visionRoutes);
 app.use("/api/social", socialRoutes);
+app.use("/api/process", processRoutes);
 
 app.get("/", (req, res) => {
   res.send("API running 🚀");

@@ -1,9 +1,16 @@
 import mongoose from "mongoose";
 
 const aboutSchema = new mongoose.Schema({
-  heading: String,
-  description: String,
+  title: String,
   image: String,
+
+  sections: [
+    {
+      heading: String,
+      text: String,
+    },
+  ],
+
   socials: {
     linkedin: String,
     instagram: String,
