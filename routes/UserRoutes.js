@@ -1,12 +1,20 @@
-// routes/UserRoutes.js
 import express from "express";
 import authenticateToken from "../middleware/AuthMiddleware.js";
 
 const router = express.Router();
 
-// Example protected route
+// TEST ROUTE (VERY IMPORTANT)
+router.get("/test", (req, res) => {
+  res.send("Users route working ✅");
+});
+
+// PROFILE ROUTE (PROTECTED)
 router.get("/profile", authenticateToken, (req, res) => {
-  res.json({ message: "This is your profile", user: req.user });
+  res.status(200).json({
+    message: "Profile fetched successfully",
+    user: req.user,
+  });
 });
 
 export default router;
+

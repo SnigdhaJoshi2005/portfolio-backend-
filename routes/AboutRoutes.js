@@ -28,4 +28,17 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
+router.put("/", authenticateToken, async (req, res) => {
+  try {
+    const about = await About.findOneAndUpdate(
+      {},
+      req.body,
+      { new: true, upsert: true }
+    );
+    res.json(about);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
