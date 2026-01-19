@@ -14,7 +14,7 @@ import userRoutes from "./routes/UserRoutes.js";
 import cookieParser from "cookie-parser";
 import processRoutes from "./routes/ProcessRoutes.js";
 
-app.use("/api/process", processRoutes);
+
 
 
 dotenv.config();
@@ -32,11 +32,12 @@ app.use(
   })
 );
 
-app.use("/uploads", express.static("uploads"));
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+app.use("/uploads", express.static("uploads"));
+app.use("/api/process", processRoutes);
 
 // Routes
 app.use("/api/auth", authRoutes);

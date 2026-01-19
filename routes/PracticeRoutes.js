@@ -49,4 +49,15 @@ router.delete("/:id", authenticateToken, async (req, res) => {
   }
 });
 
+// GET single practice by ID (public)
+router.get("/:id", async (req, res) => {
+  try {
+    const practice = await Practice.findById(req.params.id);
+    if (!practice) return res.status(404).json({ error: "Practice not found" });
+    res.json(practice);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 export default router;
