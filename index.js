@@ -13,7 +13,7 @@ import authRoutes from "./routes/AuthRoutes.js";
 import userRoutes from "./routes/UserRoutes.js";
 import cookieParser from "cookie-parser";
 import processRoutes from "./routes/ProcessRoutes.js";
-
+import contactRoutes from "./routes/ContactRoutes.js";
 
 
 
@@ -50,6 +50,7 @@ app.use("/api/serve", serveRoutes);
 app.use("/api/vision", visionRoutes);
 app.use("/api/social", socialRoutes);
 app.use("/api/process", processRoutes);
+app.use("/api/contact", contactRoutes);
 
 app.get("/", (req, res) => {
   res.send("API running 🚀");

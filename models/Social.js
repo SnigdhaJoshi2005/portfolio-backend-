@@ -1,26 +1,24 @@
 import mongoose from "mongoose";
 
-const socialSchema = new mongoose.Schema({
-  instagram: {
-    type: String,
-  },
+const socialSchema = new mongoose.Schema(
+  {
+    instagramImg: String,
+    instagramUrl: String,
 
-  facebook: {
-    type: String,
-  },
+    facebookImg: String,
+    facebookUrl: String,
 
-  youtubeEmbed: {
-    type: String, // iframe src only
-  },
+    youtubeTitle: String,
+    youtubeEmbedUrl: String, // iframe src only
+    youtubeChannelUrl: String,
 
-  youtubeChannel: {
-    type: String,
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
+  { timestamps: true }
+);
 
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-});
-
-export default mongoose.model("Social", socialSchema);
+export default mongoose.models.Social ||
+  mongoose.model("Social", socialSchema);
