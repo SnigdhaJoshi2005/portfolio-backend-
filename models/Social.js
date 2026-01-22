@@ -9,13 +9,8 @@ const socialSchema = new mongoose.Schema(
     facebookUrl: String,
 
     youtubeTitle: String,
-    youtubeEmbedUrl: String, // iframe src only
+    youtubeEmbedUrl: String,
     youtubeChannelUrl: String,
-
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
   },
   { timestamps: true }
 );
