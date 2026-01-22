@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import authenticateToken from "../middleware/AuthMiddleware.js";
 
 const router = express.Router();
 
@@ -54,6 +55,10 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+router.get("/me", authenticateToken, (req, res) => {
+  res.json({ user: req.user });
 });
 
 // LOGOUT
