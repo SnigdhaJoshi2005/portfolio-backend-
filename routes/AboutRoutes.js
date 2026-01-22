@@ -30,30 +30,33 @@ router.get("/", async (req, res) => {
 // CREATE / UPDATE about (admin)
 router.put("/", authenticateToken, upload.single("image"), async (req, res) => {
   try {
-    const { title, heading, description, linkedin, instagram, facebook } = req.body;
+    console.log("Received data:", req.body);
+
+    const { title, sections, linkedin, instagram, facebook } = req.body;
 
     const updateData = {
       title: title || "",
-      heading: heading || "",
-      description: description || "",
       socials: {
         linkedin: linkedin || "",
         instagram: instagram || "",
         facebook: facebook || "",
       },
+      sections: sections ? JSON.parse(sections) : [],
     };
 
-    if (req.file) updateData.image = req.file.path;
+    if (req.file) {
+      updateData.image = req.file.path;
+    }
 
     const about = await About.findOneAndUpdate(
       {},
-      { $set: updateData },  // <-- important fix to prevent $setOnInsert error
+      { $set: updateData },
       { new: true, upsert: true }
     );
 
     res.json(about);
   } catch (err) {
-    console.error(err);
+    console.error("UPDATE ABOUT ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 });
